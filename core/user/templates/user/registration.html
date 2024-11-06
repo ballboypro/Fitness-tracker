@@ -1,0 +1,41 @@
+{% extends 'index.html' %}
+{% load static  %}
+
+
+{% block topcontent %}
+{% endblock %}
+{% block maincontent %}
+ <main class="content">
+    <div class="container-lg">
+      <div class="row justify-content-center">
+        <div class="col-lg-4">
+            <section class="login">
+              <h2 class="title">Registration</h2>
+              <form class="login-form" method="POST">
+                {% csrf_token %}
+                {% if form.errors %}
+                    {% for error in field.errors %}
+                    <strong>{{ error|escape }}</strong>
+                    <strong>{{ field|escape }}</strong>
+                    {% endfor %}
+                {% endif %}
+                {% for field in form %}
+                    <p>{{field.label_tag }}</p>
+                    <p> {{field }}</p>
+                {% endfor %}
+                <button class="btn btn-outline-dark mb-4" type="submit">
+                    Create Account
+                </button>
+
+                </form>
+              <div class="login-text">
+                <p>Already have an account?</p>
+                <a class="a-link" href="{% url 'user:login' %}">Login</a>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </main>
+
+{% endblock %}

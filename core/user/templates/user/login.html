@@ -1,0 +1,41 @@
+{% extends 'index.html' %}
+{% load static  %}
+
+
+{% block topcontent %}
+{% endblock %}
+{% block maincontent %}
+ <main class="content">
+    <section class="login">
+      <div class="container-lg">
+        <div class="row justify-content-center">
+          <div class="col-lg-4">
+              <h2 class="title">Login</h2>
+              {% if form.errors %}
+                <br>
+                <p>Your username and password didn't match. Please try again.</p>
+                <br>
+              {% endif %}
+                
+              <form class="login-form" method="POST">
+                {% csrf_token %}
+                {% for field in form %}
+                <p>{{field.label_tag }}</p>
+                <p> {{field }}</p>
+                {% endfor %}
+                <button class="btn btn-outline-dark mb-4" type="submit">Login</button>
+              </form>
+              
+              <div class="login-text">
+                <div>Don't have an account?
+                <a class="a-link" href="{% url 'user:registration' %}">Register</a>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    </main>
+
+
+{% endblock %}
